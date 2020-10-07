@@ -1,3 +1,8 @@
+
+# I realize the naming is the same as the lab but i wrote everything by hand 
+# i will change the naming on the weekend 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

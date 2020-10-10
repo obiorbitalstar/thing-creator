@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 
@@ -7,47 +6,47 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      snacks: [
+      things: [
         {
           id: 1,
-          name: 'cookies',
-          type: 'sweet'
+          name: 'Potato',
+          type: 'food'
         },
         {
           id: 2,
-          name: 'oranges',
-          type: 'fruit'
+          name: 'shovel',
+          type: 'tool'
         },
         {
           id: 3,
-          name: 'chocolate',
-          type: 'good'
+          name: 'sword',
+          type: 'weapon'
         }
 
       ],
-      defaultSnack: 'Falafel'
+      defaultThing: 'Laptop'
     };
-    this.addNewSnack = this.addNewSnack.bind(this);
+    this.addNewThing = this.addNewThing.bind(this);
 
   }
 
   render() {
     return (
       <div className='App'>
-        <Header dSnack={this.state.defaultSnack} />
-        <SnackList snacks={this.state.snacks} snackCreated={snack => this.addNewSnack(snack)} />
+        <Header dThing={this.state.defaultThing} />
+        <ThingsList things={this.state.things} thingCreated={thing => this.addNewThing(thing)} />
         <Footer text="Some copy right stuff" />
       </div>
 
     );
 
   }
-  addNewSnack(snack) {
+  addNewThing(thing) {
 
-    let allSnacks = this.state.snacks;
-    allSnacks.push({ id: 15, name: snack.name, type: snack.type });
+    let allThings = this.state.things;
+    allThings.push({ id: 15, name: thing.name, type: thing.type });
     this.setState({
-      snacks: allSnacks
+      things: allThings
     })
   }
 
@@ -57,12 +56,12 @@ class App extends React.Component {
 
 
 
-class SnackForm extends React.Component {
+class ThingForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: "",
-      snackType: ""
+      thingType: ""
     };
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -72,7 +71,7 @@ class SnackForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label> Snack Name
+        <label> Thing Name
             <input type='text' placeholder='name' onChange={this.handleChangeName}></input>
           <input type='text' placeholder='type'></input>
           <input type='submit' value='Add'></input>
@@ -100,27 +99,27 @@ class SnackForm extends React.Component {
 
 }
 
-function SnackList(props) {
+function ThingsList(props) {
   return (
     <>
-      <h2>Snack length:{props.snacks.length}</h2>
+      <h2>Things length: {props.things.length}</h2>
       <ul>
-        {props.snacks.map(snack => <Snack item={snack} key={snack.id} />)}
+        {props.things.map(thing => <Thing item={thing} key={thing.id} />)}
       </ul>
-      <SnackForm onSnackCreate={(data) => props.snackCreated(data)} />
+      <ThingForm onSnackCreate={(data) => props.thingCreated(data)} />
     </>
   );
 
 }
 
-function Snack(props) {
+function Thing(props) {
   return <li>{props.item.name}</li>
 }
 
 
 
 function Header(props) {
-  return <header><h3>Default Snack:{props.dSnack}</h3></header>;
+  return <header><h3>Default Thing:{props.dSnack}</h3></header>;
 
 }
 
